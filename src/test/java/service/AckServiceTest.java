@@ -25,7 +25,7 @@ class AckServiceTest {
     void testAckServiceValidXml() {
         RestAssured.given()
                 .header("Content-Type", "text/xml;charset=UTF-8")
-                .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ack=\"http://tsystems.com/etccm/iso12855/ack\"><soapenv:Header/><soapenv:Body><ack:InfoExchangeAck><ack:messageOriginator><ack:countryCode>1001010000</ack:countryCode><ack:providerIdentifier>40</ack:providerIdentifier></ack:messageOriginator><ack:ackADU><ack:apduAckCode>10</ack:apduAckCode></ack:ackADU></ack:InfoExchangeAck></soapenv:Body></soapenv:Envelope>")
+                .body("<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ack=\"http://tsystems.com/etccm/iso12855/ack\"><soapenv:Header/><soapenv:Body><ack:InfoExchangeAck><!--Optional:--><ack:messageOriginator><ack:countryCode>1001010000</ack:countryCode><ack:providerIdentifier>40</ack:providerIdentifier></ack:messageOriginator><!--Optional:--><ack:informationSenderId><ack:countryCode>1001010000</ack:countryCode><ack:providerIdentifier>40</ack:providerIdentifier></ack:informationSenderId><!--Optional:--><ack:informationRecipientId><ack:countryCode>1001010000</ack:countryCode><ack:providerIdentifier>40</ack:providerIdentifier></ack:informationRecipientId><ack:ackADU><ack:apduAckCode>10</ack:apduAckCode></ack:ackADU></ack:InfoExchangeAck></soapenv:Body></soapenv:Envelope>")
                 .when()
                 .post("/test/service/ackService")
                 .then()
